@@ -1,0 +1,13 @@
+{
+  "name": "Vue SSR Demo",
+  "short_name": "Vue SSR",
+  "icons": [{
+    "src": "/vue-ssr/public/logo.png",
+    "sizes": "140x140",
+    "type": "image/png"
+  }],
+  "start_url": "/",
+  "background_color": "#f2f3f5",
+  "display": "standalone",
+  "theme_color": "#f60"
+}
