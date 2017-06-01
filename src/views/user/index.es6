@@ -12,6 +12,6 @@ export default {
   },
 
   metaInfo () {
-    return this.$seo('item', this.user ? this.user.id : 'User not found')
+    return this.$seo('user', this.user ? this.user.id : 'User not found')
   }
 }

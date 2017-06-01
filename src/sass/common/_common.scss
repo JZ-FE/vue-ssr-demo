@@ -5,6 +5,7 @@ $imgPath: $imgPath3;
 
 html,
 body {
+  overflow: hidden;
   height: 100%;
   font-size: px2rem(26);
   font-family: $font-cn;
@@ -12,7 +13,6 @@ body {
   background-color: $bg-color;
   -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-transform: translateZ(0);
 }
 
 a {
@@ -44,13 +44,13 @@ a {
   flex-direction: row;
 }
 
-.flex-col {
+.flex-item {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
 }
 
-.flex-ver {
+.flex-col {
   flex-direction: column;
 }
 
@@ -65,6 +65,10 @@ a {
 
 .red {
   color: $red;
+}
+
+.green {
+  color: $green;
 }
 
 .blue {
@@ -99,7 +103,7 @@ img.avatar,
   position: absolute;
   top: 0;
   width: 100%;
-  padding-top: px2rem($titbarHeight);
+  padding-top: px2rem($headerHeight);
   -webkit-animation-duration: .3s;
   animation-duration: .3s;
   -webkit-animation-fill-mode: both;

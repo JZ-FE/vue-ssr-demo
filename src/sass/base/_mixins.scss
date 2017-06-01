@@ -99,7 +99,7 @@
   vertical-align: middle;
   border-radius: 50%;
 }
-@mixin line-top($color: #ccc) {
+@mixin line-top($color: $border-color) {
   position: absolute;
   top: 0;
   right: 0;
@@ -111,7 +111,7 @@
   transform-origin: 0 0;
   transform: scaleY(0.5);
 }
-@mixin line-bottom($color: #ccc) {
+@mixin line-bottom($color: $border-color) {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -123,7 +123,7 @@
   transform-origin: 0 100%;
   transform: scaleY(0.5);
 }
-@mixin line-left($color: #ccc) {
+@mixin line-left($color: $border-color) {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -135,13 +135,13 @@
   transform-origin: 0 0;
   transform: scaleX(0.5);
 }
-@mixin line-right($color: #ccc) {
+@mixin line-right($color: $border-color) {
   position: absolute;
   top: 0;
-  width: 0;
+  right: 0;
   bottom: 0;
   content: " ";
-  height: 1px;
+  width: 1px;
   color: $color;
   border-right: 1px solid $color;
   transform-origin: 100% 0;

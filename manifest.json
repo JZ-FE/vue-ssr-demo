@@ -3,7 +3,7 @@
   "short_name": "Vue SSR",
   "icons": [{
     "src": "/vue-ssr/public/logo.png",
-    "sizes": "140x140",
+    "sizes": "120x120",
     "type": "image/png"
   }],
   "start_url": "/",

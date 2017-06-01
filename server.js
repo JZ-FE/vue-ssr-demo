@@ -120,14 +120,16 @@ function render (req, res) {
     cookies: req.cookies
   }
   renderer.renderToString(context, (err, html) => {
-    let { title, meta } = context.meta.inject()
-    let titleText = title.text()
-    let metaText = meta.text()
+    if (context.meta) {
+      let { title, meta } = context.meta.inject()
+      let titleText = title.text()
+      let metaText = meta.text()
 
-    metaText = metaText.replace(/></, '>\n\t<')
+      metaText = metaText.replace(/></, '>\n\t<')
 
-    html = html || ''
-    html = html.replace(/<title[^>]*>[^<]*<\/title>/, titleText).replace(/<meta[^<]name="keywords"[^>]*>[\n\s]*<meta[^<]name="description"[^>]*>/, metaText)
+      html = html || ''
+      html = html.replace(/<title[^>]*>[^<]*<\/title>/, titleText).replace(/<meta[^<]name="keywords"[^>]*>[\n\s]*<meta[^<]name="description"[^>]*>/, metaText)
+    }
 
     if (err) {
       console.log(`[Error]"${req.url}": ${JSON.stringify(err)}`)

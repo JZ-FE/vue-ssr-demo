@@ -4,16 +4,16 @@ let $vm
 
 export default {
   install (Vue, options) {
-    const Previewer = Vue.extend(UiImage)
+    const UImage = Vue.extend(UiImage)
 
     if (!$vm) {
-      $vm = new Previewer({
+      $vm = new UImage({
         el: document.createElement('div')
       })
       document.body.appendChild($vm.$el)
     }
 
-    const previewer = {
+    const image = {
       show (options) {
         if (typeof options === 'string') {
           $vm.image = options
@@ -33,10 +33,10 @@ export default {
 
     if (!Vue.$ui) {
       Vue.$ui = {
-        previewer
+        image
       }
     } else {
-      Vue.$ui.previewer = previewer
+      Vue.$ui.image = image
     }
 
     Vue.mixin({

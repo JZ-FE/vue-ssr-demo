@@ -1,5 +1,6 @@
 {
   "name": "vue-ssr-demo",
+  "version": "1.0.0",
   "description": "A Vue.js SSR project",
   "author": "Billwing <tbrweb@gmail.com>",
   "private": true,

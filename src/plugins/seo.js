@@ -21,7 +21,11 @@ export default {
         keywords = keywords || item[1]
       }
 
-      description = description || item[2]
+      if (description && item[2]) {
+        description = item[2].replace('s%', description)
+      } else {
+        description = description || item[2]
+      }
 
       return {
         title: title,
