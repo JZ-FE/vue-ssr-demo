@@ -3,12 +3,12 @@ import UiShare from 'components/ui/Share.vue'
 let $vm
 
 export default {
-  install (Vue, options) {
+  install (Vue) {
     const Share = Vue.extend(UiShare)
 
     if (!$vm) {
       $vm = new Share({
-        el: document.createElement('div')
+        el: document.createElement('div'),
       })
       document.body.appendChild($vm.$el)
     }
@@ -18,34 +18,35 @@ export default {
         if (typeof options === 'string') {
           $vm.title = options
         } else if (typeof options === 'object') {
-          for (let i in options) {
-            $vm[i] = options[i]
-          }
+          Object.keys(options).forEach((key) => {
+            $vm[key] = options[key]
+          })
         }
-        
+
         $vm.show = true
       },
 
       hide () {
         $vm.show = false
-      }
+      },
     }
 
     if (!Vue.$ui) {
       Vue.$ui = {
-        share
+        share,
       }
     } else {
       Vue.$ui.share = share
     }
 
     Vue.mixin({
-      created: function () {
+      created () {
         this.$ui = Vue.$ui
-      }
+      },
     })
 
     if (typeof window !== 'undefined') {
+      /* eslint-disable */
       // borrowed from http://v3.jiathis.com/code/jiathis_m.js
       (function() {
         var m = document,
@@ -118,6 +119,5 @@ export default {
         }
       })()
     }
-
-  }
+  },
 }

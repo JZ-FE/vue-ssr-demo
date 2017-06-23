@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { createStore } from './store'
-import { createRouter } from './router'
+import createStore from './store'
+import createRouter from './router'
 import { sync } from 'vuex-router-sync'
-import * as filters from './helpers/filters'
-import './helpers/directives'
+import * as filters from 'helpers/filters'
+import 'helpers/directives'
 import Utils from 'utils'
 
 import Meta from 'vue-meta'
@@ -30,13 +30,13 @@ if (Utils.isWin()) {
 }
 
 // register global utility filters.
-Object.keys(filters).forEach(key => {
+Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
 
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
-export function createApp () {
+export default function createApp () {
   // create store and router instances
   const store = createStore()
   const router = createRouter()
@@ -51,7 +51,7 @@ export function createApp () {
   const app = new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
   })
 
   // Utils initialize

@@ -8,7 +8,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   devtool: isProd
-    ? false
+    ? '#source-map'
     : '#cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, '../dist2'),
@@ -20,6 +20,7 @@ module.exports = {
       'public': path.resolve(__dirname, '../public'),
       'components': path.resolve(__dirname, '../src/components'),
       'plugins': path.resolve(__dirname, '../src/plugins'),
+      'helpers': path.resolve(__dirname, '../src/helpers'),
       'utils': path.resolve(__dirname, '../src/helpers/utils'),
       'base': path.resolve(__dirname, '../src/sass/base/_base.scss')
     }
@@ -27,6 +28,15 @@ module.exports = {
   module: {
     noParse: /es6-promise\.js$/, // avoid webpack shimming process
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [path.resolve(__dirname, '../src/')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -63,7 +73,8 @@ module.exports = {
   plugins: isProd
     ? [
         new webpack.optimize.UglifyJsPlugin({
-          compress: { warnings: false }
+          compress: { warnings: false },
+          sourceMap: true
         }),
         new ExtractTextPlugin({
           filename: 'common.[chunkhash].css'

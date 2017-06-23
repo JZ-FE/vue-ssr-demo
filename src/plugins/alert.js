@@ -2,13 +2,13 @@ import UiAlert from 'components/ui/Alert.vue'
 
 let $vm
 
-const plugin = {
-  install (Vue, options) {
+export default {
+  install (Vue) {
     const Alert = Vue.extend(UiAlert)
 
-    if (!$vm) {  
+    if (!$vm) {
       $vm = new Alert({
-        el: document.createElement('div')
+        el: document.createElement('div'),
       })
       document.body.appendChild($vm.$el)
     }
@@ -18,34 +18,31 @@ const plugin = {
         if (typeof options === 'string') {
           $vm.content = options
         } else if (typeof options === 'object') {
-          for (let i in options) {
-            $vm[i] = options[i]
-          }
+          Object.keys(options).forEach((key) => {
+            $vm[key] = options[key]
+          })
         }
-        
+
         $vm.show = true
       },
 
       hide () {
         $vm.show = false
-      }
+      },
     }
 
     if (!Vue.$ui) {
       Vue.$ui = {
-        alert
+        alert,
       }
     } else {
       Vue.$ui.alert = alert
     }
 
     Vue.mixin({
-      created: function () {
+      created () {
         this.$ui = Vue.$ui
-      }
+      },
     })
-
-  }
+  },
 }
-
-export default plugin

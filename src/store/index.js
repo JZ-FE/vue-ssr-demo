@@ -6,12 +6,13 @@ import getters from './getters'
 
 Vue.use(Vuex)
 
-export function createStore () {
+export default function createStore () {
   return new Vuex.Store({
     state: {
       loading: false,
       submitting: false,
 
+      project: '',
       cookies: {},
       userData: {},
 
@@ -24,12 +25,12 @@ export function createStore () {
         new: [],
         show: [],
         ask: [],
-        job: []
-      }
+        job: [],
+      },
     },
 
     actions,
     mutations,
-    getters
+    getters,
   })
 }

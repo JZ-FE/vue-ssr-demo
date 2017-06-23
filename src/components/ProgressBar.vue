@@ -81,8 +81,8 @@ export default {
     fail () {
       this.canSuccess = false
       return this
-    }
-  }
+    },
+  },
 }
 </script>
 

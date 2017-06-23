@@ -19,18 +19,17 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
-    
+
     <loading/>
   </div>
 </template>
 
 <script>
-  import Utils from 'utils'
   import Loading from 'components/ui/Loading.vue'
 
   export default {
     components: {
-      Loading
+      Loading,
     },
 
     data () {
@@ -49,7 +48,7 @@
 
     mounted () {
 
-    }
+    },
   }
 </script>
 

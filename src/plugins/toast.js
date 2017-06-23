@@ -4,32 +4,32 @@ let $vm
 let watcher
 
 export default {
-  install (Vue, options) {
+  install (Vue) {
     const Toast = Vue.extend(UiToast)
 
     if (!$vm) {
       $vm = new Toast({
-        el: document.createElement('div')
+        el: document.createElement('div'),
       })
       document.body.appendChild($vm.$el)
     }
 
     const toast = {
       show (options) {
-        watcher && watcher()
+        if (typeof watcher === 'function') watcher()
 
         if (typeof options === 'string') {
           $vm.text = options
         } else if (typeof options === 'object') {
-          for (let i in options) {
-            $vm[i] = options[i]
-          }
+          Object.keys(options).forEach((key) => {
+            $vm[key] = options[key]
+          })
         }
 
         if (typeof options === 'object' && (options.onShow || options.onHide)) {
           watcher = $vm.$watch('show', (val) => {
-            val && options.onShow && options.onShow($vm)
-            val === false && options.onHide && options.onHide($vm)
+            if (val && options.onShow) options.onShow($vm)
+            if (val === false && options.onHide) options.onHide($vm)
           })
         }
 
@@ -38,21 +38,21 @@ export default {
 
       hide () {
         $vm.show = false
-      }
+      },
     }
 
     if (!Vue.$ui) {
       Vue.$ui = {
-        toast
+        toast,
       }
     } else {
       Vue.$ui.toast = toast
     }
 
     Vue.mixin({
-      created: function () {
+      created () {
         this.$ui = Vue.$ui
-      }
+      },
     })
-  }
+  },
 }

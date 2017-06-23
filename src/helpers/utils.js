@@ -1,11 +1,14 @@
-let app, store
+import _ from 'lodash'
 
-const Utils = {
+let app
+let store
+
+export default {
   // Initialize
   init (a, s) {
     if (a) app = a
     if (s) store = s
-    
+
     return { app, store }
   },
 
@@ -59,9 +62,9 @@ const Utils = {
     if (!msg) return
 
     if (this.isWin()) {
-      alert(msg)
+      alert(msg) // eslint-disable-line
     } else {
-      console.log(msg)
+      console.log(msg) // eslint-disable-line
     }
   },
 
@@ -72,7 +75,7 @@ const Utils = {
     if (this.isWin()) {
       app.$ui.alert.show(msg)
     } else {
-      console.log(msg)
+      console.log(msg) // eslint-disable-line
     }
   },
 
@@ -83,17 +86,17 @@ const Utils = {
     if (this.isWin()) {
       app.$ui.toast.show(msg)
     } else {
-      console.log(msg)
+      console.log(msg) // eslint-disable-line
     }
   },
 
   // UI Image
   uiImage (event) {
-    let target = event.target
-    let tagName = target.tagName.toLowerCase()
+    const target = event.target
+    const tagName = target.tagName.toLowerCase()
     let imageSrc = target.src
 
-    if (tagName == 'img' && imageSrc) {
+    if (tagName === 'img' && imageSrc) {
       imageSrc = imageSrc.split('?')[0]
       app.$ui.image.show(imageSrc)
     }
@@ -101,13 +104,29 @@ const Utils = {
 
   // Get URL param
   getUrlParam (name) {
-    let reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)')
-    let r = window.location.search.substr(1).match(reg)
+    const regex = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
+    const match = window.location.search.substr(1).match(regex)
 
-    if (r != null) return unescape(decodeURI(r[2]))
+    if (match != null) return unescape(decodeURI(match[2]))
     return null
-  }
+  },
 
+  // Get Project
+  getProject (type) {
+    const state = store.state
+    const route = _.isObject(type) ? type : app.$route
+    const meta = route.meta || {}
+    const proj = meta.project || 'vue-ssr'
+    const data = {}
+
+    if (type === 'name') {
+      return data[proj]
+    }
+
+    if (type) {
+      state.project = proj
+    }
+
+    return state.project || proj
+  },
 }
-
-export default Utils

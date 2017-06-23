@@ -21,46 +21,46 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
       close: {
         type: Boolean,
-        default: false
+        default: false,
       },
       cancel: {
         type: Boolean,
-        default: false
+        default: false,
       },
       title: {
-        type: String
+        type: String,
       },
       content: {
-        type: String
+        type: String,
       },
       cancelText: {
         type: String,
-        default: '取消'
+        default: '取消',
       },
       confirmText: {
         type: String,
-        default: '确定'
-      }
+        default: '确定',
+      },
     },
 
     components: {
-      UiDialog
+      UiDialog,
     },
 
     methods: {
-      onConfirm() {
+      onConfirm () {
         this.show = false
-        this.btnConfirm && this.btnConfirm()
+        if (this.btnConfirm) this.btnConfirm()
       },
 
-      onClose() {
+      onClose () {
         this.show = false
-      }
-    }
+      },
+    },
   }
 </script>
 

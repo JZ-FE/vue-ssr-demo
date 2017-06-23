@@ -21,65 +21,64 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
       title: {
-        type: String
+        type: String,
       },
       confirmText: {
         type: String,
-        default: '确认'
+        default: '确认',
       },
       cancelText: {
         type: String,
-        default: '取消'
-      }
+        default: '取消',
+      },
     },
 
     components: {
       UiMask,
-      UiDialog
+      UiDialog,
     },
 
-    data() {
+    data () {
       return {
-        isShow: false
+        isShow: false,
       }
     },
 
-    created() {
+    created () {
       this.isShow = this.show
     },
 
     watch: {
-      show(val) {
+      show (val) {
         this.isShow = val
       },
-      isShow(val) {
+      isShow (val) {
         if (!val) this.$emit('confirmHide')
-      }
+      },
     },
 
     methods: {
-      onConfirm() {
+      onConfirm () {
         this.isShow = false
         this.$emit('btnConfirm')
       },
 
-      onCancel() {
+      onCancel () {
         this.isShow = false
         this.$emit('btnCancel')
       },
 
-      onClose() {
+      onClose () {
         this.isShow = false
-      }
+      },
     },
 
-    beforeDestroy() {
+    beforeDestroy () {
       this.isShow = false
-    }
-
+    },
   }
 </script>
 

@@ -29,7 +29,7 @@
 <script>
 export default {
   name: 'news-item',
-  props: ['item']
+  props: ['item'],
 }
 </script>
 

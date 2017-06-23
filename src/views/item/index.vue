@@ -28,7 +28,8 @@
 </template>
 
 <script>
-  import index from './index.es6'
+  import index from './index'
+
   export default index
 </script>
 

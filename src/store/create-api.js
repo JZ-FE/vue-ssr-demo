@@ -2,44 +2,50 @@ import axios from 'axios'
 import Utils from 'utils'
 import _ from 'lodash'
 
-export function createAPI (options = {}) {
+export default function createAPI (config = {}) {
+  let options = config
+
   if (_.isString(options)) options = { url: options }
 
-  let defaults = {
+  const defaults = {
     method: 'get',
     baseURL: 'https://hacker-news.firebaseio.com/v0/',
-    headers: {},
-    params: {},
+    headers: {
+
+    },
+    params: {
+
+    },
     timeout: 10000,
     loading: true,
     retData: false,
     showAlert: true,
-    validateStatus: null
+    validateStatus: null,
   }
 
   options = _.assign(defaults, options)
 
-  let { store } = Utils.init()
-  let state = store ? store.state : {}
+  const { store } = Utils.init()
+  const state = store ? store.state : {}
 
   if (options.loading) {
     state.loading = true
   }
 
-  let isPost = options.method === 'post' || options.retData
+  const isPost = options.method === 'post' || options.retData
   if (isPost) state.submitting = true
 
-  let start = Date.now()
+  const start = Date.now()
 
   return axios(options)
-  .then(res => {
-    let status = res.status
-    let data = res.data
+  .then((res) => {
+    const status = res.status
+    const data = res.data
 
     state.loading = false
     state.submitting = false
 
-    if (status == 500) {
+    if (status === 500) {
       Utils.uiAlert('Network Error!')
       return []
     } else if (!data) {
@@ -47,11 +53,11 @@ export function createAPI (options = {}) {
       return []
     }
 
-    console.log(`[API]"${options.url}": ${Date.now() - start}ms`)
+    console.log(`[API]"${options.url}": ${Date.now() - start}ms`) // eslint-disable-line
 
-    let code = data.code
-    let msg = data.msg
-    let response = data.response
+    const code = data.code
+    const msg = data.msg
+    const response = data.response
 
     if (isPost) {
       return data
@@ -64,16 +70,16 @@ export function createAPI (options = {}) {
     }
 
     return []
-  }).catch(error => {
+  }).catch((error) => {
     state.loading = false
     state.submitting = false
 
-    let err = String(error)
+    const err = String(error)
     if (err.indexOf('timeout') > 0) {
       Utils.uiAlert('Request Timeout!')
     }
 
-    console.log(error)
+    console.log(error) // eslint-disable-line
     return []
   })
 }

@@ -4,14 +4,14 @@ export default {
   name: 'list-view',
 
   components: {
-    Item
+    Item,
   },
 
   data () {
     return {
       transition: 'slide-right',
       displayedPage: Number(this.$route.params.page) || 1,
-      displayedItems: this.$store.getters.activeItems
+      displayedItems: this.$store.getters.activeItems,
     }
   },
 
@@ -28,10 +28,10 @@ export default {
     },
     hasMore () {
       return this.page < this.maxPage
-    }
+    },
   },
 
-  asyncData ({ store, route: { params: { type }}}) {
+  asyncData ({ store, route: { params: { type } } }) {
     return store.dispatch('FETCH_LIST_DATA', { type })
   },
 
@@ -50,19 +50,19 @@ export default {
   },
 
   watch: {
-    type (to, from) {
+    type () {
       this.displayedItems = this.$store.getters.activeItems
     },
     page (to, from) {
       this.loadItems(to, from)
-    }
+    },
   },
 
   methods: {
     loadItems (to, from) {
       this.$bar.start()
       this.$store.dispatch('FETCH_LIST_DATA', {
-        type: this.type
+        type: this.type,
       }).then(() => {
         this.loadAfter(to, from)
         this.$bar.finish()
@@ -74,11 +74,12 @@ export default {
         this.$router.replace(`${this.linkTo(this.type)}/1`)
         return
       }
+      /* eslint-disable no-nested-ternary */
       this.transition = from === -1
         ? null
         : to > from ? 'slide-left' : 'slide-right'
       this.displayedPage = to
       this.displayedItems = this.$store.getters.activeItems
-    }
-  }
+    },
+  },
 }

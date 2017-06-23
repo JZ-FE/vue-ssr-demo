@@ -1,7 +1,9 @@
+import Utils from 'utils'
+
 export default {
-  install (Vue, options) {
-  	Vue.prototype.linkTo = function (url = '', prefix = '/vue-ssr/') {
+  install (Vue) {
+    Vue.prototype.linkTo = function linkTo (url = '', prefix = `/${Utils.getProject()}/`) {
       return `${prefix}${url}`
     }
-  }
+  },
 }

@@ -8,15 +8,15 @@
     props: {
       transparent: {
         type: Boolean,
-        default: false
-      }
+        default: false,
+      },
     },
 
     methods: {
       onMask () {
         this.$emit('onMask')
-      }
-    }
+      },
+    },
   }
 </script>
 

@@ -18,46 +18,46 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
 
       type: {
         type: String,
-        default: ''
+        default: '',
       },
 
       close: {
         type: Boolean,
-        default: false
-      }
+        default: false,
+      },
     },
 
     components: {
-      UiMask
+      UiMask,
     },
 
-    data() {
+    data () {
       return {
-        isShow: false
+        isShow: false,
       }
     },
 
-    created() {
+    created () {
       this.isShow = this.show
     },
 
     watch: {
-      show(val) {
+      show (val) {
         this.isShow = val
-      }
+      },
     },
 
     methods: {
-      onClose() {
+      onClose () {
         this.isShow = false
         this.$emit('btnClose')
-      }
-    }
+      },
+    },
   }
 </script>
 

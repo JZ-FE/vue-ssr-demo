@@ -15,24 +15,24 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
 
       image: {
         type: String,
-        default: ''
-      }
+        default: '',
+      },
     },
 
     components: {
-      UiDialog
+      UiDialog,
     },
 
     methods: {
       onClose () {
         this.show = false
-      }
-    }
+      },
+    },
   }
 </script>
 

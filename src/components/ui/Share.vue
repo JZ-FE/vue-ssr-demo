@@ -24,62 +24,62 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
 
       title: {
         type: String,
-        default: ''
+        default: '',
       },
 
       summary: {
         type: String,
-        default: ''
-      }
+        default: '',
+      },
     },
 
     components: {
-      UiMask
+      UiMask,
     },
 
-    data() {
+    data () {
       return {
         list: {
           moments: '朋友圈',
           weixin: '微信好友',
           tsina: '新浪微博',
           cqq: 'QQ好友',
-          qzone: 'QQ空间'
-        }
+          qzone: 'QQ空间',
+        },
       }
     },
 
     methods: {
-      onHide() {
+      onHide () {
         this.show = false
       },
 
-      onShare(name) {
-        let title = this.title
-        let summary = this.summary
+      onShare (name) {
+        const title = this.title
+        const summary = this.summary
+        const jiathis = window.jiathis_mh5
 
-        if (typeof jiathis_mh5 === 'object') {
+        if (typeof jiathis === 'object') {
           this.onHide()
-            // Jiathis
-          return jiathis_mh5.sendTo(name, title, summary)
-        } else {
-          // Custom
-          let url = encodeURIComponent(location.href)
 
-          let templates = {
+          jiathis.sendTo(name, title, summary)
+        } else {
+          const url = encodeURIComponent(location.href)
+
+          const templates = {
             moments: '',
             weixin: '',
             tsina: `http://service.weibo.com/share/share.php?url=${url}&title=${title}&pic=&appkey=2992571369`,
             cqq: `http://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${title}&desc=${summary}&pics=`,
-            qzone: `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${url}&title=${title}&summary=${summary}&pics=`
+            qzone: `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${url}&title=${title}&summary=${summary}&pics=`,
           }
 
-          let shareUrl = templates[name]
+          const shareUrl = templates[name]
 
           if (shareUrl) {
             location.href = shareUrl
@@ -87,8 +87,8 @@
             this.$ui.toast.show('请使用微信分享')
           }
         }
-      }
-    }
+      },
+    },
   }
 </script>
 

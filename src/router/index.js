@@ -7,30 +7,37 @@ const ListView = () => import('../views/list/index.vue')
 const ItemView = () => import('../views/item/index.vue')
 const UserView = () => import('../views/user/index.vue')
 
-let routes = [
+const routes = [
   { path: '/item/:id(\\d+)', component: ItemView },
   { path: '/user/:id', component: UserView },
   { path: '/:type/:page(\\d+)?', component: ListView },
-  { path: '/', redirect: '/top' }
+  { path: '/', redirect: '/top' },
 ]
 
-const baseDir = '/vue-ssr'
 routes.forEach((item) => {
+  const meta = item.meta
   let path = item.path
-  
-  if (path === '/') {
-    item.redirect = `${baseDir + item.redirect}`
+  let baseDir = '/vue-ssr'
+
+  if (meta && meta.project) {
+    baseDir = `/${meta.project}`
+  }
+
+  if (path === '/home') {
+    path = `${baseDir}/`
+  } else if (path === '/' && item.redirect) {
+    item.redirect = `${baseDir + item.redirect}/`
   } else {
-    path = `${baseDir + path}`    
+    path = `${baseDir + path}`
   }
 
   item.path = path
 })
 
-export function createRouter () {
+export default function createRouter () {
   return new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
-    routes: routes
+    routes,
   })
 }

@@ -18,38 +18,39 @@
     props: {
       show: {
         type: Boolean,
-        default: false
+        default: false,
       },
       time: {
         type: Number,
-        default: 2000
+        default: 2000,
       },
       type: {
         type: String,
-        default: 'text'
+        default: 'text',
       },
       width: {
         type: String,
-        default: 'inherit'
+        default: 'inherit',
       },
-      text: String
+      text: String,
     },
 
     components: {
-      UiMask
+      UiMask,
     },
 
     watch: {
-      show(val) {
+      show (val) {
         if (!val) return
 
         clearTimeout(this.timeout)
+
         this.timeout = setTimeout(() => {
           this.show = false
           this.$emit('on-hide')
         }, this.time)
-      }
-    }
+      },
+    },
   }
 </script>
 
