@@ -33,6 +33,16 @@ npm start
 
 ## Without SSR
 1. `src/index.template.html` add `<div id="app"></div>`
-2. `src/entry-client.js` remove `store.replaceState(window.__INITIAL_STATE__)`
-3. `src/router/index.js` modify `mode: 'history'` to `mode: 'hash'`
+2. `src/entry-client.js` remove `store.replaceState(window.__INITIAL_STATE__)`, modify `app.$mount('#app')` to
+```javascript
+const matchedComponents = router.getMatchedComponents()
+if (!matchedComponents.length) alert('404')
+Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
+  store,
+  route: router.currentRoute,
+}))).then(() => {
+  app.$mount('#app')
+})
+```
+3. `src/router/index.js` modify `mode: 'history'` to `mode: 'hash'`, replace `const (.*?) = \(\) => import\((.*?)\)` to `import $1 from $2`
 4. `npm run build:client`

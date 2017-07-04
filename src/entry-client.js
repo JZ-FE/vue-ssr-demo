@@ -69,5 +69,5 @@ router.onReady(() => {
 
 // service worker
 if (location.protocol === 'https:' && navigator.serviceWorker) {
-  navigator.serviceWorker.register('/{{ name }}/service-worker.js')
+  navigator.serviceWorker.register('/vue-ssr/service-worker.js')
 }

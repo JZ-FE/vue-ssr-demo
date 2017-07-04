@@ -11,7 +11,7 @@ function fetchComments (store, item) {
       return fetchComments(store, store.state.items[id])
     })))
   }
-  return []
+  return Promise.resolve()
 }
 
 export default {
