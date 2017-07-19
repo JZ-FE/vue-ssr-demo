@@ -29,8 +29,11 @@ npm install # or yarn
 # serve in dev mode, with hot reload at localhost:8080
 npm run dev
 
-# build for production (use`npm run build --report`to build with bundle size analytics)
+# build for production
 npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 
 # serve in production mode
 npm start
