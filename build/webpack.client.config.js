@@ -4,6 +4,7 @@ const base = require('./webpack.base.config')
 const HTMLPlugin = require('html-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const config = merge(base, {
   entry: {
@@ -52,6 +53,13 @@ if (process.env.NODE_ENV === 'production') {
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/]
     })
   )
+}
+
+if (process.env.npm_config_report) {
+  // Run the build command with an extra argument to
+  // View the bundle analyzer report after build finishes:
+  // `npm run build --report`
+  config.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = config
