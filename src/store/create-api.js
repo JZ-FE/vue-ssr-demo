@@ -32,7 +32,7 @@ export default function createAPI (config = {}) {
     state.loading = true
   }
 
-  const isPost = options.method === 'post' || options.retData
+  const isPost = options.method === 'post'
   if (isPost) state.submitting = true
 
   const start = Date.now()
@@ -59,9 +59,9 @@ export default function createAPI (config = {}) {
     const msg = data.msg
     const response = data.response
 
-    if (isPost) {
-      return data
-    }
+    if (options.retData) return data
+
+    if (isPost) Utils.uiToast(msg)
 
     if (code === 1) {
       return response

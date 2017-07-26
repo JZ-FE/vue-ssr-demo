@@ -14,7 +14,6 @@ export default function createStore () {
 
       project: '',
       cookies: {},
-      userData: {},
 
       activeType: null,
       itemsPerPage: 20,

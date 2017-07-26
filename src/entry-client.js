@@ -43,7 +43,10 @@ router.onReady(() => {
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
     let diffed = false
-    const activated = matched.filter((c, i) => diffed || (diffed = (prevMatched[i] !== c)))
+    const activated = matched.filter((c, i) => {
+      diffed = diffed || prevMatched[i] !== c
+      return diffed
+    })
     const asyncDataHooks = activated.map(c => c.asyncData).filter(_ => _)
     const prevProject = Utils.getProject()
 

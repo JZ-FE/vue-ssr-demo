@@ -2,7 +2,9 @@ import Vue from 'vue'
 
 export const scrollBottom = Vue.directive('scroll-bottom', {
   update: (el) => {
-    setTimeout(() => (el.scrollTop = el.scrollHeight), 1)
+    setTimeout(() => {
+      el.scrollTop = el.scrollHeight
+    }, 1)
   },
 })
 
