@@ -60,9 +60,8 @@
       },
 
       onShare (name) {
-        const title = this.title
-        const summary = this.summary
-        const jiathis = window.jiathis_mh5
+        const { title, summary } = this
+        const { jiathis, location } = window
 
         if (typeof jiathis === 'object') {
           this.onHide()

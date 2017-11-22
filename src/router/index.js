@@ -15,8 +15,8 @@ const routes = [
 ]
 
 routes.forEach((item) => {
-  const meta = item.meta
-  let path = item.path
+  const { meta } = item
+  let { path } = item
   let baseDir = '/vue-ssr'
 
   if (meta && meta.project) {
@@ -37,6 +37,7 @@ routes.forEach((item) => {
 export default function createRouter () {
   return new Router({
     mode: 'history',
+    fallback: false,
     scrollBehavior: () => ({ y: 0 }),
     routes,
   })

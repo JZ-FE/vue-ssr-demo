@@ -31,6 +31,7 @@ module.exports = {
       'props': false
     }],
     'no-underscore-dangle': 'off',
+    'prefer-promise-reject-errors': 'off',
     'semi': ['error', 'never'],
     'space-before-function-paren': ['error', {
       'anonymous': 'always',

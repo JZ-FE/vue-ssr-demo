@@ -76,6 +76,7 @@ module.exports = {
           compress: { warnings: false },
           sourceMap: true
         }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin({
           filename: 'common.[chunkhash].css'
         })

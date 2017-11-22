@@ -37,10 +37,8 @@ export default function createAPI (config = {}) {
 
   const start = Date.now()
 
-  return axios(options)
-  .then((res) => {
-    const status = res.status
-    const data = res.data
+  return axios(options).then((res) => {
+    const { status, data } = res
 
     state.loading = false
     state.submitting = false
@@ -55,9 +53,7 @@ export default function createAPI (config = {}) {
 
     console.log(`[API]"${options.url}": ${Date.now() - start}ms`) // eslint-disable-line
 
-    const code = data.code
-    const msg = data.msg
-    const response = data.response
+    const { code, msg, response } = data
 
     if (options.retData) return data
 

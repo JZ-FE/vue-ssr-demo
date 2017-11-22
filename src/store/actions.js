@@ -1,9 +1,9 @@
 import createAPI from './create-api'
 
-/* eslint-disable arrow-body-style */
+/* eslint-disable arrow-body-style, no-empty-pattern */
 export default {
   // ensure data for rendering given list type
-  FETCH_LIST_DATA: ({ commit, dispatch, state }, { type }) => {
+  FETCH_LIST_DATA: ({ commit, dispatch }, { type }) => {
     commit('SET_ACTIVE_TYPE', { type })
     return createAPI({
       url: `${type}stories.json`,
@@ -19,7 +19,7 @@ export default {
     })
   },
 
-  FETCH_ITEM: ({ commit, state }, { id }) => {
+  FETCH_ITEM: ({}, { id }) => {
     return createAPI({
       url: `item/${id}.json`,
       retData: true,

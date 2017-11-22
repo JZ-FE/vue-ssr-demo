@@ -13,7 +13,7 @@ export default (context) => {
     const meta = app.$meta()
 
     const { url, cookies } = context
-    const fullPath = router.resolve(url).route.fullPath
+    const { fullPath } = router.resolve(url).route
 
     if (fullPath !== url) {
       reject({ url: fullPath })

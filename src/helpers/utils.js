@@ -92,13 +92,13 @@ export default {
 
   // UI Image
   uiImage (event) {
-    const target = event.target
+    const { target } = event
     const tagName = target.tagName.toLowerCase()
-    let imageSrc = target.src
+    const imageSrc = target.src
 
     if (tagName === 'img' && imageSrc) {
-      imageSrc = imageSrc.split('?')[0]
-      app.$ui.image.show(imageSrc)
+      const [imageUrl] = imageSrc.split('?')
+      app.$ui.image.show(imageUrl)
     }
   },
 
@@ -113,7 +113,7 @@ export default {
 
   // Get Project
   getProject (type) {
-    const state = store.state
+    const { state } = store
     const route = _.isObject(type) ? type : app.$route
     const meta = route.meta || {}
     const proj = meta.project || 'vue-ssr'
