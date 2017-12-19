@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
-
 const ListView = () => import('../views/list/index.vue')
 const ItemView = () => import('../views/item/index.vue')
 const UserView = () => import('../views/user/index.vue')
+
+Vue.use(Router)
 
 const routes = [
   { path: '/item/:id(\\d+)', component: ItemView },
