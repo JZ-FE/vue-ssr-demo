@@ -113,6 +113,7 @@ function render (req, res) {
     title: '',
     keywords: '',
     description: '',
+    query: req.query,
     cookies: req.cookies,
   }
 

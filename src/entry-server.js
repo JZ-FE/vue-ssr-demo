@@ -12,7 +12,7 @@ export default (context) => {
     const { app, router, store } = createApp()
     const meta = app.$meta()
 
-    const { url, cookies } = context
+    const { url, query, cookies } = context
     const { fullPath } = router.resolve(url).route
 
     if (fullPath !== url) {
@@ -29,6 +29,9 @@ export default (context) => {
       if (!matchedComponents.length) {
         reject({ code: 404 })
       }
+
+      // get url query
+      if (query) store.state.query = query
 
       // get client cookies
       if (cookies) store.state.cookies = cookies

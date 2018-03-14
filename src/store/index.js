@@ -13,6 +13,7 @@ export default function createStore () {
       submitting: false,
 
       project: '',
+      query: {},
       cookies: {},
 
       activeType: null,

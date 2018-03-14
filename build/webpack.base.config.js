@@ -43,12 +43,12 @@ module.exports = {
         options: vueConfig
       },
       {
-        test: /\.(js|es6)$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,

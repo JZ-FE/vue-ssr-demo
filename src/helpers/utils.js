@@ -4,6 +4,8 @@ let app
 let store
 
 export default {
+  _,
+
   // Initialize
   init (a, s) {
     if (a) app = a
