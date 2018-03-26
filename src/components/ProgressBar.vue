@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .progress {
   position: fixed;
   top: 0px;
