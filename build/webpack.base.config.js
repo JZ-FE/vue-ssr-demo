@@ -5,7 +5,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
-const isProd = NODE_ENV !== 'production'
+const isProd = NODE_ENV === 'production'
 
 module.exports = {
   mode: NODE_ENV,
