@@ -45,7 +45,8 @@ export default function createAPI (config = {}) {
     if (status === 500) {
       Utils.uiAlert('Network Error!')
       return []
-    } else if (!data) {
+    }
+    if (!data) {
       Utils.uiAlert('Data Error!')
       return []
     }
@@ -60,7 +61,8 @@ export default function createAPI (config = {}) {
 
     if (code === 1) {
       return response
-    } else if (options.showAlert) {
+    }
+    if (options.showAlert) {
       Utils.uiAlert(msg)
     }
 
